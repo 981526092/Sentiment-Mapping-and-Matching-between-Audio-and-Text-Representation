@@ -1,0 +1,32 @@
+nohup: ignoring input
+hy.cheng==原始数据：标签--音频文件        labels source                                    path
+0  m_surprise  SAVEE  ../dataset/savee/AudioData/DC/su02.wav
+1     m_happy  SAVEE   ../dataset/savee/AudioData/DC/h07.wav
+2     m_happy  SAVEE   ../dataset/savee/AudioData/DC/h14.wav
+3   m_disgust  SAVEE   ../dataset/savee/AudioData/DC/d02.wav
+4   m_disgust  SAVEE   ../dataset/savee/AudioData/DC/d11.wav
+1920
+hy.cheng==mfcc特征:                                               feature
+0  [-24.262724, -25.900513, -27.470804, -23.05587...
+1  [-15.059396, -16.807034, -16.127068, -6.684359...
+2  [-0.54283214, -3.704099, -13.209988, -13.3176,...
+3  [-25.927309, -25.113688, -25.729801, -27.12758...
+4  [-26.713661, -26.638517, -27.328579, -27.11216...
+hy.cheng==标签+mfcc特征:         labels source  ...        214        215
+0  m_surprise  SAVEE  ... -24.818472 -24.122171
+1     m_happy  SAVEE  ...  -0.043483   2.257757
+2     m_happy  SAVEE  ...  -4.142285   0.820214
+3   m_disgust  SAVEE  ...  -5.378167  -2.130258
+4   m_disgust  SAVEE  ... -22.951792 -21.907616
+
+[5 rows x 219 columns]
+hy.cheng==标签+mfcc特征:         labels source  ...        214        215
+0  m_surprise  SAVEE  ... -24.818472 -24.122171
+1     m_happy  SAVEE  ...  -0.043483   2.257757
+2     m_happy  SAVEE  ...  -4.142285   0.820214
+3   m_disgust  SAVEE  ...  -5.378167  -2.130258
+4   m_disgust  SAVEE  ... -22.951792 -21.907616
+
+[5 rows x 219 columns]
+(1920, 219)
+hy.cheng=====end.
