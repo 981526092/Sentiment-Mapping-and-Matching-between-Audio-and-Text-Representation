@@ -1,0 +1,86 @@
+# Importing required libraries 
+import keras
+from keras import regularizers
+from keras.preprocessing import sequence
+from keras.preprocessing.text import Tokenizer
+from keras.preprocessing.sequence import pad_sequences
+from keras.models import Sequential, Model, model_from_json
+from keras.layers import Dense, Embedding, LSTM
+from keras.layers import Input, Flatten, Dropout, Activation, BatchNormalization
+from keras.layers import Conv1D, MaxPooling1D, AveragePooling1D
+from keras.utils import np_utils
+from keras.callbacks import ModelCheckpoint
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras import optimizers
+
+# sklearn
+from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+
+# Other  
+import librosa
+import librosa.display
+import json
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from matplotlib.pyplot import specgram
+import pandas as pd
+import seaborn as sns
+import glob 
+import os
+import pickle
+import IPython.display as ipd  # To play sound in the notebook
+
+
+ref = pd.read_csv("../dataset/audio_data_path.csv")
+print("原始数据：标签--音频文件",ref.head())
+
+# Note this takes a couple of minutes (~10 mins) as we're iterating over 2 datasets 
+df = pd.DataFrame(columns=['feature'])
+
+# loop feature extraction over the entire dataset
+counter=0
+for index,path in enumerate(ref.path):
+    X, sample_rate = librosa.load(path
+                                  , res_type='kaiser_fast'
+                                  ,duration=2.5
+                                  ,sr=44100
+                                  ,offset=0.5
+                                 )
+    sample_rate = np.array(sample_rate)
+    
+    # mean as the feature. Could do min and max etc as well. 
+    mfccs = np.mean(librosa.feature.mfcc(y=X, 
+                                        sr=sample_rate, 
+                                        n_mfcc=13),
+                                        axis=0)
+    df.loc[counter] = [mfccs]
+    counter=counter+1
+    #print(counter, mfccs)
+
+print(len(df))
+print("mfcc特征: ",df.head())
+
+# save it
+#df.to_pickle('./model/mfccs_1D')
+
+# load it
+#df = pd.read_pickle('./model/mfccs_1D')
+#print("hy.cheng==mfcc特征: ",df.head())
+
+# Now extract the mean bands to its own feature columns
+df = pd.concat([ref,pd.DataFrame(df['feature'].values.tolist())],axis=1)
+print("标签+mfcc特征: ",df.head())
+
+# replace NA with 0
+df=df.fillna(0)
+print("标签+mfcc特征: ",df.head())
+print(df.shape)
+
+#save to csv
+df.to_csv("mfcc_feature.csv",index=False)
+
+print("=====end.")
+
