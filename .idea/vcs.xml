@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="VcsDirectoryMappings">
-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Sentiment-Mapping-and-Matching-between-Audio-and-Text-Representation" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/textEmbedding/cnn-rnf" vcs="Git" />
-  </component>
-</project>
